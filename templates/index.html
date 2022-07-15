@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+   <head>
+      <link rel="stylesheet" href="../static/style.css/">
+      <title>Sonoff</title>
+   </head>
+   <body>
+      <div class="content">
+
+         <h1 style="color:red;">{{ time }}</h1>
+
+         <form method="post" action="/">
+         {% for device in devices.keys() %}
+           <input class="btn-group {{ devices[device]['style'] }}" type="submit" value="{{ device }}" name="{{ device }}"/>
+         {% endfor %}
+         </form>
+
+      </div>
+   </body>
+</html>

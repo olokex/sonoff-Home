@@ -1,0 +1,58 @@
+.btn-group { /* button input[type=submit] { */
+  font-weight: 400;
+  font-size: 1.3em;
+  /* padding: 10px 24px; Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 50%; /* Set a width if needed */
+  height: 40px;
+  display: block; /* Make the buttons appear below each other */
+  border-radius: 20px;
+  margin: auto;
+  margin-top: 10px;
+  position: relative;
+}
+
+
+.btn-off {
+  background-color: #440a2a; /* Green background */
+  border: 1px solid #551e3c; /* Green border */
+  color: rgb(180, 159, 176); /* White text */
+}
+
+.btn-off:hover {
+  background-color: #aa8197; /* Green background */
+  border: 1px solid #9c8f96; /* Green border */
+  color: rgb(32, 19, 30); /* White text */
+}
+
+
+.btn-on {
+  background-color: #f79fcf; /* Green background */
+  border: 1px solid #b67699; /* Green border */
+  color: rgb(87, 15, 71); /* White text */
+}
+
+.btn-on:hover {
+  background-color: #5a374a; /* Green background */
+  border: 1px solid #4e2e40; /* Green border */
+  color: rgb(194, 81, 169); /* White text */
+}
+
+
+.btn-group button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+
+body {
+  background-color: rgb(59, 59, 59);
+}
+
+
+.content {
+  margin: auto;
+  width: 50%;
+  /* border: black 1px solid; */
+  text-align: center;
+  padding-top: 100px;
+}
