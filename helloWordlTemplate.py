@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import requests
 import json
 import sys
@@ -91,6 +91,13 @@ devices = {
       name="Work"
    ),
 
+   "Fan": SonOffSwitch(
+      device_id="100164af39",
+      ip_address="192.168.0.127",
+      value="Fan",
+      name="Fan"
+   ),
+
 }
 
 
@@ -99,11 +106,11 @@ app = Flask(__name__)
 def process_post(site):
    if request.method == 'POST':
       device = request.form["device"]
-      print(device)
       if device in devices:
          devices[device].switch_status()
-
-   return render_template(site, devices=devices)
+      return redirect(request.url, code=303)
+   else:
+      return render_template(site, devices=devices)
 
 
 @app.route("/", methods=['GET', 'POST'])

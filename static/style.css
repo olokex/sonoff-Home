@@ -26,13 +26,13 @@
 }
 
 
-.btn-on {
+.btn-on:hover {
   background-color: #f4aeba; /* Green background */
   border: 1px solid #ec729c; /* Green border */
   color: #fdfdcb; /* White text */
 }
 
-.btn-on:hover {
+.btn-on {
   background-color: #e84a5f; /* Green background */
   border: 1px solid #45171d; /* Green border */
   color: #fecea8; /* White text */
