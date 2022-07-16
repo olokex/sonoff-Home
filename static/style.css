@@ -14,28 +14,28 @@
 
 
 .btn-off {
-  background-color: #440a2a; /* Green background */
-  border: 1px solid #551e3c; /* Green border */
-  color: rgb(180, 159, 176); /* White text */
+  background-color: #680747; /* Green background */
+  border: 1px solid #c3195d; /* Green border */
+  color: #f70776; /* White text */
 }
 
 .btn-off:hover {
-  background-color: #aa8197; /* Green background */
-  border: 1px solid #9c8f96; /* Green border */
-  color: rgb(32, 19, 30); /* White text */
+  background-color: #ff347f; /* Green background */
+  border: 1px solid #c9356c; /* Green border */
+  color: #fafafa; /* White text */
 }
 
 
 .btn-on {
-  background-color: #f79fcf; /* Green background */
-  border: 1px solid #b67699; /* Green border */
-  color: rgb(87, 15, 71); /* White text */
+  background-color: #f4aeba; /* Green background */
+  border: 1px solid #ec729c; /* Green border */
+  color: #fdfdcb; /* White text */
 }
 
 .btn-on:hover {
-  background-color: #5a374a; /* Green background */
-  border: 1px solid #4e2e40; /* Green border */
-  color: rgb(194, 81, 169); /* White text */
+  background-color: #e84a5f; /* Green background */
+  border: 1px solid #45171d; /* Green border */
+  color: #fecea8; /* White text */
 }
 
 
