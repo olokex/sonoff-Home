@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-   <head>
-      <link rel="stylesheet" href="../static/style.css/">
-      <title>Sonoff</title>
-
-   </head>
-   <body>
-      <div class="content">
-
-         <form method="post" action="/mamka/">
-           <input class="btn-group {{ devices['Fan'].style }}" type="submit" value="Fan" name="device" />
-         </form>
-
-      </div>
-      <script type="text/javascript" src="../static/script.js"></script>
-   </body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+   <div class="{{ devices['Fan'].style }}">
+      <form method="post" action="/mamka/">
+         <input type="hidden" name="device" value="{{ devices['Fan'].name }}" />
+         <input type="hidden" name="value" value="{{ devices['Fan'].value }}" />
+         <input id='button' class="material-symbols-outlined" type="submit" value="{{ devices['Fan'].icon }}" />
+      </form>
+   </div>
+{% endblock %}

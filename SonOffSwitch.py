@@ -2,11 +2,12 @@ import requests
 import json
 
 class SonOffSwitch:
-   def __init__(self, device_id, ip_address, value, name):
+   def __init__(self, device_id, ip_address, value, name, icon):
       self.device_id = device_id
       self.ip_address = ip_address
       self.value = value
       self.name = name
+      self.icon = icon
       self.check_status()
 
    def _send_request(self, message=None, address=None):
@@ -26,13 +27,27 @@ class SonOffSwitch:
          "data": { }
       }
    
-      response = requests.post("http://{}:8081/zeroconf/info".format(self.ip_address), json=msg)
-      response = json.loads(response.content)
+      try:
+         response = requests.post("http://{}:8081/zeroconf/info".format(self.ip_address), json=msg, timeout=1)
+         response = json.loads(response.content)
 
-      if response["data"]["switch"] == "off":
+         if response["data"]["switch"] == "off":
+            self._off()
+         else:
+            self._on()
+
+      except requests.exceptions.ConnectTimeout as e:
          self._off()
-      else:
-         self._on()
+         print(f"setting {self.name} to {self.status}")
+      except ConnectionError as e:
+         print(e)
+      except ConnectionResetError as e:
+         print(e)
+      except requests.ConnectionError as e:
+         print(e)
+      except Exception as e:
+         print(e)
+
 
    def _on(self):
       self.status = "on"

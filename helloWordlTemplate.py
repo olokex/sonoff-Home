@@ -1,29 +1,28 @@
 from flask import Flask, render_template, request, redirect, url_for
-from SonOffSwitch import SonOffSwitch
-from KVMSwitch import KVMSwitch
+from apscheduler.schedulers.background import BackgroundScheduler
+from devices import devices
 
 
-devices = {
-   "Lamp": SonOffSwitch(
-      device_id="100164af39",
-      ip_address="192.168.0.127",
-      value="Lamp",
-      name="Lamp"
-   ),
+# example of a device
+# devices = {
+#    "Lamp": SonOffSwitch(
+#       device_id="AABBCCEEFF",
+#       ip_address="0.0.0.0",
+#       value="Lamp",
+#       name="Lamp",
+#       icon="floor_lamp"
+#    ),
+# }
 
-   "Work": KVMSwitch(
-      value="Home",
-      name="Work"
-   ),
 
-   "Fan": SonOffSwitch(
-      device_id="100164af39",
-      ip_address="192.168.0.127",
-      value="Fan",
-      name="Fan"
-   ),
+def check_status():
+   for device in devices.values():
+      device.check_status()
 
-}
+
+sched = BackgroundScheduler(daemon=True)
+sched.add_job(check_status, 'interval', seconds=5)
+sched.start()
 
 
 app = Flask(__name__)

@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-   <head>
-      <link rel="stylesheet" href="../static/style.css/">
-      <title>Sonoff</title>
-   </head>
-   <body>
-      <div class="content">
-         {% for device in devices.values() %}
-         <form method="post" action="/">
-            <input type="hidden" name="device" value="{{ device.name }}" />
-            <input type="hidden" name="value" value="{{ device.value }}" />
-            <input class="btn-group {{ device.style }}" type="submit" value="{{ device.value }}"/>
-         </form>
-         {% endfor %}
-      </div>
-      <script type="text/javascript" src="../static/script.js"></script>
-   </body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+   {% for device in devices.values() %}
+   <div class="{{ device.style }}">
+      <form method="post" action="/">
+         <input type="hidden" name="device" value="{{ device.name }}" />
+         <input type="hidden" name="value" value="{{ device.value }}" />
+         <input id='button' class="material-symbols-outlined" type="submit" value="{{ device.icon }}" />
+      </form>
+   </div>
+   {% endfor %}
+{% endblock %}
