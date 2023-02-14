@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+
+   <style>
+   hello-world {
+      font-weight: bold;
+      color: red;
+      width: 200px;
+      display: inline-block ;
+      height: 50px;
+   }
+   </style>
+
+
+   <script type="text/javascript">
+      class HelloWorld extends HTMLElement {
+      // connect component
+      connectedCallback() {
+         this.textContent = 'Hello World!';
+      }
+
+      customElements.define( 'hello-world', HelloWorld );
+   }
+   </script>
+
+   <hello-world></hello-world>
+
+
+   <div class="wrap" style="border: 2px red solid;">
+      <div class="header">
+         <span class="header-inner">BALCONY</span>
+      </div>
+      <div class="outer">
+         <div class="inner btn-balcony">
+            <div id="rotate-right">
+               <form>
+                  <input type="hidden" name="device" value="{{ device.name }}" />
+                  <input type="hidden" name="value" value="{{ device.value }}" />
+                  <input id='button' class="material-symbols-outlined balcony-icons" type="submit" value="{{ device.icon_right }}" />
+               </form>
+            </div>
+         </div>
+         <div class="inner btn-balcony">
+            <div id="rotate-left">
+               <form>
+                  <input type="hidden" name="device" value="{{ device.name }}" />
+                  <input type="hidden" name="value" value="{{ device.value }}" />
+                  <input id='button' class="material-symbols-outlined balcony-icons" type="submit" value="{{ device.icon_left }}" />
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+
+
+   <script type="text/javascript">
+   const btnLeft = document.getElementById('rotate-left');
+   const btnRight = document.getElementById('rotate-right');
+
+   btnLeft.addEventListener('mousedown', () => {
+      fetch('/Balcony/rotate_left');
+   })
+
+   btnRight.addEventListener('mousedown', () => {
+      fetch('/Balcony/rotate_right');
+   })
+
+   btnLeft.addEventListener('mouseup', () => {
+      fetch('/Balcony/stop_rotate');
+   })
+   btnRight.addEventListener('mouseup', () => {
+      fetch('/Balcony/stop_rotate');
+   })
+   </script>
+{% endblock %}
