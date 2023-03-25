@@ -61,33 +61,40 @@ template.innerHTML = `
    'opsz' 48;
  }
 
- .google-icon:hover {
+.google-icon:hover {
    background-color: #ba684e;
- }
+}
+
+.google-icon.active {
+   background-color: #ba684e;
+}
 
 .google-icon:active {
    background-color: #752e17;
    border-color: black;
  }
- 
-.base {
-   border: 1px red solid;
-}
+
 .content{
    width: 400px;
 }
 
+.disable-selection {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
 </style>
 
-<div class="base">
+
     <div class="button-panel">
     <h2 class="panel-title">title</h2>
     <div class="button-group">
-        <button class="google-icon"><i class="material-symbols-outlined" id="rightButton">icon</i></button>
-        <button class="google-icon"><i class="material-symbols-outlined" id="leftButton">icon</i></button>
+        <button class="google-icon disable-selection"><i class="material-symbols-outlined" id="rightButton">icon</i></button>
+        <button class="google-icon disable-selection"><i class="material-symbols-outlined" id="leftButton">icon</i></button>
     </div>
     </div>
-</div>
+
 `;
 
 class SunblindButton extends HTMLElement {
@@ -98,8 +105,7 @@ class SunblindButton extends HTMLElement {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
-    
-        // Append the link to the head of the shadow DOM
+
         shadowRoot.appendChild(link);
         
         let clone = template.content.cloneNode(true);
@@ -113,21 +119,29 @@ class SunblindButton extends HTMLElement {
         rightButton.textContent = this.icon_right;
         leftButton.textContent = this.icon_left;
 
-        leftButton.addEventListener('mousedown', () => {
+        const isMobile = /Mobile/.test(navigator.userAgent);
+        console.log(isMobile);
+
+
+        const eventDown = isMobile ? 'touchstart' : 'mousedown';
+        const eventUp = isMobile ? 'touchend' : 'mouseup';
+
+        leftButton.addEventListener(eventDown, () => {
             fetch(`/${this.device_id}/rotate_left`);
         });
         
-        leftButton.addEventListener('mouseup', () => {
-            fetch(`${this.device_id}/stop_rotate`);
+        leftButton.addEventListener(eventUp, () => {
+            fetch(`/${this.device_id}/stop_rotate`);
         });
 
-        rightButton.addEventListener('mousedown', () => {
-            fetch(`${this.device_id}/rotate_right`);
+        rightButton.addEventListener(eventDown, () => {
+            fetch(`/${this.device_id}/rotate_right`);
         });
         
-        rightButton.addEventListener('mouseup', () => {
-            fetch(`${this.device_id}/stop_rotate`);
+        rightButton.addEventListener(eventUp, () => {
+            fetch(`/${this.device_id}/stop_rotate`);
         });
+
     }
 
     static get observedAttributes() {

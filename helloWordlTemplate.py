@@ -68,6 +68,7 @@ def rotate_right(device_id):
 
 @app.route("/<device_id>/rotate_left")
 def rotate_left(device_id):
+   print(device_id)
    devices[device_id].rotate_left()
    return "ok"
 
