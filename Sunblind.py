@@ -1,12 +1,10 @@
 import requests
 
 class Sunblind:
-  def __init__(self, ip_address, port, value, name, icon_left, icon_right, show_in_menu):
+  def __init__(self, ip_address, port, title, icon_left, icon_right):
     self.ip_address = ip_address
     self.port = port
-    self.value = value
-    self.name = name
-    self.show_in_menu = show_in_menu
+    self.title = title
     self.icon_left = icon_left
     self.icon_right = icon_right
 

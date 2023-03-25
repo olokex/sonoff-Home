@@ -12,7 +12,7 @@ class KVMSwitch:
 
    def switch_status(self):
       self._check_status()
-      # Switcher.switch_status()      
+      Switcher.switch_status()      
 
    def _check_status(self):
       if self.value == "Work":
