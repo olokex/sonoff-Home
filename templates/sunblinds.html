@@ -8,9 +8,9 @@
          gap: 15px;
       }
    </style>
-   <sunblind-button title="balcony" device-id="Balcony" icon-left="rotate_left" icon-right="rotate_right"></sunblind-button>
-   <sunblind-button title="test" device-id="Test" icon-left="rotate_left" icon-right="rotate_right"></sunblind-button>
-   <sunblind-button title="test" device-id="Test" icon-left="rotate_left" icon-right="rotate_right"></sunblind-button>
-   <sunblind-button title="test" device-id="Test" icon-left="rotate_left" icon-right="rotate_right"></sunblind-button>
+   
+   {% for key, device in devices.items() %}
+      <sunblind-button title="{{ device.title }}" device-id="{{ key }}" icon-left="{{ device.icon_left }}" icon-right="{{ device.icon_right }}"></sunblind-button>
+   {% endfor %}
    
 {% endblock %}

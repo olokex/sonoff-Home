@@ -4,6 +4,7 @@ from devices import devices
 
 from KVMSwitch import KVMSwitch
 from SonOffSwitch import SonOffSwitch
+from Sunblind import Sunblind
 
 
 # example of a device
@@ -57,7 +58,12 @@ def mamka():
 
 @app.route("/sunblinds/", methods=['GET', 'POST'])
 def sunblinds():
-   return render_template("sunblinds.html", device=devices["Balcony"])
+   sunblinds = []
+   for key, value in devices.items():
+      if isinstance(value, Sunblind):
+         sunblinds.append((key, value))
+
+   return render_template("sunblinds.html", devices=dict(sunblinds))
 
 
 @app.route("/<device_id>/rotate_right")
