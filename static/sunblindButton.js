@@ -49,6 +49,7 @@ template.innerHTML = `
    margin: 1.3em;
    <!--transition: background-color 0.3s ease;-->
  }
+
 .material-symbols-outlined {
    font-size: 7em;         
 }
@@ -83,6 +84,44 @@ template.innerHTML = `
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+}
+
+@media only screen and (max-width: 1080px) {
+    .button-panel {
+        width: 40em;
+        height: 20em;
+      }
+     
+    .material-symbols-outlined {
+        font-size: 14em;         
+     }
+     
+    .google-icon {
+        width: 20em;
+        height: 20em;
+        margin: 2.6em;
+        <!--transition: background-color 0.3s ease;-->
+      }
+
+      .google-icon:hover {
+        background-color: white;
+     }
+     
+     .google-icon.active {
+        background-color: #ba684e;
+     }
+     
+     .google-icon:active {
+        background-color: #752e17;
+        border-color: black;
+      }
+
+      .panel-title {
+
+        font-size: 48px;
+
+      }
+      
 }
 </style>
 

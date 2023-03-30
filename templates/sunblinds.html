@@ -7,6 +7,13 @@
          flex-wrap: wrap;
          gap: 15px;
       }
+
+      @media only screen and (max-width: 1080px) {
+         .content {
+             margin-left: 10em;
+             gap: 50px;
+         }
+      }
    </style>
    
    {% for key, device in devices.items() %}
